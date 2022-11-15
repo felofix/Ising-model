@@ -1,1 +1,1 @@
-# ising-model
+# ising_model
