@@ -17,7 +17,7 @@ int main(int argc, const char * argv[]) {
     
     // 20x20 simulation, shorter sim to illustrate burn-in-time.
     int L2 = 20;
-    int steps20x = 200000;
+    int steps20x = 250000;
     
     // unordered.
     Isingmodel I2T1U(L2);   // 20x20, unordered, T1

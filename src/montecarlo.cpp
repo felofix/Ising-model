@@ -44,16 +44,6 @@ bool MonteCarlo::metropolis(Isingmodel &im, int i, int j){
 
 // A Monte Carlo cycle.
 void MonteCarlo::mccycle(Isingmodel &im){
-    for (int ii = 0; ii < im.L; ii++){
-        for (int jj = 0; jj < im.L; jj++)
-            if (metropolis(im, ii, jj)){
-                im.isingmatrix(ii, jj) = -im.isingmatrix(ii, jj);
-            }
-            else{
-                continue;
-        }
-    }
-    /*
     for (int i = 0; i < pow(im.L, 2); i++){
         int ii = rand() % im.L;
         int jj = rand() % im.L;
@@ -65,10 +55,9 @@ void MonteCarlo::mccycle(Isingmodel &im){
             continue;
         }
     }
-     */
 }
 
-void MonteCarlo::solver(Isingmodel im, bool dataswitch, bool energiesswitch, bool magnetizationswitch, int burn){
+void MonteCarlo::solver(Isingmodel &im, bool dataswitch, bool energiesswitch, bool magnetizationswitch, int burn){
     arma::vec energies(steps, arma::fill::zeros);
     arma::vec magnetizations(steps, arma::fill::zeros);
     energies(0) = energy(im);  // Initial energy.
@@ -82,7 +71,7 @@ void MonteCarlo::solver(Isingmodel im, bool dataswitch, bool energiesswitch, boo
     dE[-4] = exp(-1*(B*(-8)));
     dE[4] = exp(-1*(B*(8)));
 
-    for (int i = 1; i < steps; i++){
+    for (int i = 0; i < steps; i++){
         
         if (i > burn){
             energies(i) = (im.E);       // Saving energies.

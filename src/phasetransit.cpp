@@ -14,7 +14,7 @@
 int main(int argc, const char * argv[]) {
     // Constants
     int steps = 1e6;
-    int burn = 2e5;
+    int burn = 1e5;
     
     //Parallelization loop. Takes time...
     std::vector<int> Ls = {40, 60, 80, 100};

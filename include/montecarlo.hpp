@@ -40,7 +40,7 @@ public:
     void mccycle(Isingmodel &im);
     
     // Solving montecarlo with given steps. 
-    void solver(Isingmodel im, bool dataswitch , bool energiesswitch, bool magnetizationswitch, int burn);
+    void solver(Isingmodel &im, bool dataswitch , bool energiesswitch, bool magnetizationswitch, int burn);
     
     // Returning energy.
     double energy(Isingmodel im);

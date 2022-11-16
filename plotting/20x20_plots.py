@@ -33,7 +33,6 @@ magnetUT24 = np.loadtxt('plotting/datafiles/magnetizations20x20_T24_UOrdered.txt
 magnetOT24 = np.loadtxt('plotting/datafiles/magnetizations20x20_T24_Ordered.txt')
 
 n20 = 400
-three = 300000
 cycles = np.linspace(0, len(energiesUT1), len(energiesUT1))
 colors = sns.color_palette('pastel')
 sns.set_style('darkgrid')
@@ -50,37 +49,38 @@ equiMOT24 = equilibration_m(magnetOT24, n20)
 
 
 # Plotting equilibrium energies for T = 1.
-plt.xlabel("Monte Carlo cycles")
+plt.xlabel("$log_{10}$ of Monte Carlo cycles")
 plt.ylabel("$<\epsilon> [J]$")
-plt.plot(cycles, equiEUT1, label='Unordered')
-plt.plot(cycles, equiEOT1,color = '#EC5A46', label='Ordered')
+plt.plot(np.log10(cycles), equiEUT1, label='Unordered')
+plt.plot(np.log10(cycles), equiEOT1,color = '#EC5A46', label='Ordered')
 plt.legend()
 plt.savefig("plotting/figures/Mean energy development for 20x20 with T = 1 J.pdf")
 plt.show()
 
 # Plotting equilibrium energies for T = 2.4.
-plt.xlabel("Monte Carlo cycles")
+plt.xlabel("$log_{10}$ of Monte Carlo cycles")
 plt.ylabel("$<\epsilon> [J]$")
-plt.plot(cycles, equiEUT24, label='Ordered')
-plt.plot(cycles, equiEOT24,color = '#EC5A46', label='Unordered')
+plt.plot(np.log10(cycles), equiEUT24, label='Ordered')
+plt.plot(np.log10(cycles), equiEOT24,color = '#EC5A46', label='Unordered')
 plt.legend()
 plt.savefig("plotting/figures/Mean energy development for 20x20 with T = 2.4 J.pdf")
 plt.show()
 
 # Plotting equilibrium magnetizations for T = 1.
-plt.xlabel("Monte Carlo cycles")
+plt.xlabel("$log_{10}$ of Monte Carlo cycles")
 plt.ylabel("$<|m|>$")
-plt.plot(cycles, equiMUT1, label='Unordered')
-plt.plot(cycles, equiMOT1,color = '#EC5A46', label='Ordered')
+plt.plot(np.log10(cycles), equiMUT1, label='Unordered')
+plt.plot(np.log10(cycles), equiMOT1,color = '#EC5A46', label='Ordered')
 plt.legend()
 plt.savefig("plotting/figures/Mean magnetization development for 20x20 with T = 1 J.pdf")
 plt.show()
 
 # Plotting equilibrium magnetizations for T = 2.4.
-plt.xlabel("Monte Carlo cycles")
+plt.xlabel("$log_{10}$ of Monte Carlo cycles")
 plt.ylabel("$<|m|>$")
-plt.plot(cycles, equiMUT24, label='Unordered')
-plt.plot(cycles, equiMOT24,color = '#EC5A46', label='Ordered')
+plt.plot(np.log10(cycles), equiMUT24, label='Unordered')
+plt.plot(np.log10(cycles), equiMOT24,color = '#EC5A46', label='Ordered')
 plt.legend()
 plt.savefig("plotting/figures/Mean magnetization development for 20x20 with T = 2.4 J.pdf")
 plt.show()
+

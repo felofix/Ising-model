@@ -13,7 +13,6 @@
 int main(int argc, const char * argv[]) {
     // Constants
     double T1 = 1;
-    double T24 = 2.4;
     int steps = 1e6;
     
     // 2x2 simulation.

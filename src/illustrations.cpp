@@ -17,8 +17,8 @@ int main(int argc, const char * argv[]) {
     double T24 = 2.4;
     int steps = 1e6;
     
-    Isingmodel I2T1U(20);   // 20x20, unordered, T1
-    Isingmodel I2T24U(20);   // 20x20, unordered, T24
+    Isingmodel I2T1U(40);   // 20x20, unordered, T1
+    Isingmodel I2T24U(40);   // 20x20, unordered, T24
     
     I2T1U.initialize_model();
     I2T24U.initialize_model();
