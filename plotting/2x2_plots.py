@@ -3,13 +3,13 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 def mean_epsilon(energies, N):
-	return np.mean(energies/N)
+    return np.mean(energies/N)
 
 def mean_mag(magnetizations, N):
-	return np.mean(abs(magnetizations/N))
+    return np.mean(abs(magnetizations/N))
 
 def spes_heat_cap(energies, N, B, T):
-	return (1/N)*(B/T)*np.var(energies)
+    return (1/N)*(B/T)*np.var(energies)
 
 def suceptibility(magnetizations, N, B, T):
     mean1 = np.mean(magnetizations**2)
@@ -17,16 +17,16 @@ def suceptibility(magnetizations, N, B, T):
     return (1/N)*(B)*(mean1 - mean2)
 
 def equilibration_e(energies, N):
-	mean_epsilons = np.zeros(len(energies))
-	for i in range(1, len(mean_epsilons)):
-		mean_epsilons[i] = mean_epsilon(energies[:i], N)
-	return mean_epsilons
+    mean_epsilons = np.zeros(len(energies))
+    for i in range(1, len(mean_epsilons)):
+        mean_epsilons[i] = mean_epsilon(energies[:i], N)
+    return mean_epsilons
 
 def equilibration_m(magnetizations, N):
-	mean_mags = np.zeros(len(magnetizations))
-	for i in range(1, len(mean_mags)):
-		mean_mags[i] = mean_mag(magnetizations[:i], N)
-	return mean_mags
+    mean_mags = np.zeros(len(magnetizations))
+    for i in range(1, len(mean_mags)):
+        mean_mags[i] = mean_mag(magnetizations[:i], N)
+    return mean_mags
  
 def equilibration_cv(energies, N):
     heat_caps = np.zeros(len(energies))
@@ -45,16 +45,16 @@ B = 1
 T = 1
 energies22 = np.loadtxt('plotting/datafiles/energiesT12x2.txt')
 m22 = np.loadtxt('plotting/datafiles/magnetizationsT12x2.txt')
-cycles = np.linspace(1, 250001, 25000)
-equiE22 = equilibration_e(energies22[:250000], N)
-equiM22 = equilibration_m(m22[:250000], N)
-equiCV22 = equilibration_cv(energies22[:250000], N)
-equisus22 = equilibration_sus(m22[:250000], N)
+cycles = np.linspace(1, 25001, 250000)
+equiE22 = equilibration_e(energies22[:25000], N)
+equiM22 = equilibration_m(m22[:25000], N)
+equiCV22 = equilibration_cv(energies22[:25000], N)
+equisus22 = equilibration_sus(m22[:25000], N)
 analyticale = -1.9959
 analyticalm = 0.9986
 analyticalcv = 0.0320
 analyticalsus = 0.0040
-delta = 0.001
+delta = 0.00001
 colors = sns.color_palette('pastel')
 sns.set_style('darkgrid')
 
@@ -68,3 +68,30 @@ print(f"Mean energy per spin = {equiE22[absdiffE]} gotten after {absdiffE} cycle
 print(f"Mean magnetization per spin = {equiM22[absdiffM]} gotten after {absdiffM} cycles.")
 print(f"Specific heat capcity = {equiCV22[absdiffcv]} gotten after {absdiffcv} cycles.")
 print(f"Susceptibility = {equisus22[absdiffsus]} gotten after {absdiffsus} cycles.")
+
+"""
+fig, ax = plt.subplots(2, 2)
+ax[0,0].plot(np.log10(cycles), equiE22)
+ax.set_ylabel("$log_{10} of Monte Carlo cycles$")
+ax.set_xlabel("\epsilon [J]")
+ax[0,0].plot(absdiffE, equiE22[absdiffE], 'bo')
+ax[0,0].axhline(y = equiE22[absdiffE])
+
+ax[1,0].plot(np.log10(cycles), equiE22)
+ax.set_ylabel("$log_{10} of Monte Carlo cycles$")
+ax.set_xlabel("|m|")
+ax[1,0].plot(absdiffM, equiM22[absdiffM], 'bo')
+ax[1,0].axhline(y = equiM22[absdiffM])
+
+ax[0,1].plot(np.log10(cycles), equiCV22)
+ax.set_ylabel("$log_{10} of Monte Carlo cycles$")
+ax.set_xlabel("$C_v$")
+ax[0,1].plot(absdiffM, equiCV22[absdiffcv], 'bo')
+ax[0,1].axhline(y = equiCV22[absdiffcv])
+
+ax[1,1].plot(np.log10(cycles), equiCV22)
+ax.set_ylabel("$log_{10} of Monte Carlo cycles$")
+ax.set_xlabel("$\chi$")
+ax[1,1].plot(absdiffM, equiCV22[absdiffcv], 'bo')
+ax[1,1].axhline(y = equiCV22[absdiffcv])
+"""
