@@ -131,7 +131,7 @@ double MonteCarlo::mean_epsilon(arma::vec energies, int N){
 
 // Mean epsilon
 double MonteCarlo::mean_m(arma::vec magnetizations, int N){
-    double mm = arma::mean(magnetizations)/N;
+    double mm = arma::mean(arma::abs(magnetizations))/N;
     return mm; 
 }
 

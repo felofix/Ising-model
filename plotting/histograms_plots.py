@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from matplotlib.ticker import PercentFormatter
 
-N = 20
+N = 400
 colors = sns.color_palette('pastel')
 sns.set_style('darkgrid')
 

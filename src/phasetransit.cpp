@@ -17,7 +17,7 @@ int main(int argc, const char * argv[]) {
     int burn = 2e5;
     
     //Parallelization loop. Takes time...
-    std::vector<int> Ls = {80, 100};
+    std::vector<int> Ls = {40,60,80,100};
     int cores = 6;
     int rounds = 5;
     arma::vec Ts = arma::linspace(2.1, 2.4, cores*rounds);

@@ -3,3 +3,4 @@ python3 plotting/20x20_plots.py
 python3 plotting/histograms_plots.py
 python3 plotting/phasetransit_plots.py
 python3 plotting/illustrations_plots.py
+python3 plotting/onsanger.py 
