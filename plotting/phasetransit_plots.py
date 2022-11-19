@@ -4,10 +4,10 @@ import seaborn as sns
 
 colors = sns.color_palette('pastel')
 sns.set_style('darkgrid')
-info40 = np.loadtxt('plotting/datafiles/info40.txt')
-info60 = np.loadtxt('plotting/datafiles/info60.txt')
-info80 = np.loadtxt('plotting/datafiles/info80.txt')
-info100 = np.loadtxt('plotting/datafiles/info100.txt')
+info40 = np.loadtxt('plotting/datafiles/info_40_UO_1.00000-2.40000.txt')
+info60 = np.loadtxt('plotting/datafiles/info_60_UO_1.00000-2.40000.txt')
+info80 = np.loadtxt('plotting/datafiles/info_80_UO_1.00000-2.40000.txt')
+info100 = np.loadtxt('plotting/datafiles/info_100_UO_1.00000-2.40000.txt')
 t40 = info40[4::5]
 t60 = info60[4::5]
 t80 = info80[4::5]
