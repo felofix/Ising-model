@@ -4,10 +4,10 @@ from scipy.stats import linregress
 
 L = np.array([40, 60, 80, 100])
 
-info40 = np.loadtxt('plotting/datafiles/info40.txt')
-info60 = np.loadtxt('plotting/datafiles/info60.txt')
-info80 = np.loadtxt('plotting/datafiles/info80.txt')
-info100 = np.loadtxt('plotting/datafiles/info100.txt')
+info40 = np.loadtxt('plotting/datafiles/info_40_UO_1.00000-2.40000.txt')
+info60 = np.loadtxt('plotting/datafiles/info_60_UO_1.00000-2.40000.txt')
+info80 = np.loadtxt('plotting/datafiles/info_80_UO_1.00000-2.40000.txt')
+info100 = np.loadtxt('plotting/datafiles/info_100_UO_1.00000-2.40000.txt')
 
 t40 = info40[4::5]
 t60 = info60[4::5]
@@ -43,10 +43,3 @@ for i in range(len(tc)):
     print(f"T_c({40+i*20}) = {tc[i]}")
 print(f"T_c (inf) = {linregress(1/L, tc).intercept}")
 
-# Plottig the linear regresion
-temp = np.linspace(L[0], L[-1], L(tc))
-plt.scatter(temp, tc, label = "Data", color = "k")
-plt.plot(temp, linregress(1/L, tc).intercept + temp*linregress(1/L, tc).slope, label = "Linear regression")
-plt.xlabel("Lattice length $L$")
-plt.ylabel("Critical temperature $T_c(L)")
-plt.savefig('plotting/figures/Linear_regression.pdf')
