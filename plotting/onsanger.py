@@ -44,7 +44,7 @@ for i in range(len(tc)):
 print(f"T_c (inf) = {linregress(1/L, tc).intercept}")
 
 # Plottig the linear regresion
-temp = np.linspace(tc[0], tc[-1], len(tc))
+temp = np.linspace(L[0], L[-1], L(tc))
 plt.scatter(temp, tc, label = "Data", color = "k")
 plt.plot(temp, linregress(1/L, tc).intercept + temp*linregress(1/L, tc).slope, label = "Linear regression")
 plt.xlabel("Lattice length $L$")
