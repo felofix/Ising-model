@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 from scipy.stats import linregress
 
 L = np.array([40, 60, 80, 100])
@@ -36,6 +37,16 @@ wheremax60 = np.where(info60[2::5][sortedindex60] == maxcv60)
 wheremax80 = np.where(info80[2::5][sortedindex80] == maxcv80)
 wheremax100 = np.where(info100[2::5][sortedindex100] == maxcv100)
 tc = np.array([t40[wheremax40][0], t60[wheremax60][0], t80[wheremax80][0], t100[wheremax100][0]])
+
+# Printing the critical temperatures 
 for i in range(len(tc)):
     print(f"T_c({40+i*20}) = {tc[i]}")
 print(f"T_c (inf) = {linregress(1/L, tc).intercept}")
+
+# Plottig the linear regresion
+temp = np.linspace(tc[0], tc[-1], len(tc))
+plt.scatter(temp, tc, label = "Data", color = "k")
+plt.plot(temp, linregress(1/L, tc).intercept + temp*linregress(1/L, tc).slope, label = "Linear regression")
+plt.xlabel("Lattice length $L$")
+plt.ylabel("Critical temperature $T_c(L)")
+plt.savefig('plotting/figures/Linear_regression.pdf')
