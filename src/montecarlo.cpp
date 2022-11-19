@@ -57,7 +57,7 @@ void MonteCarlo::mccycle(Isingmodel &im){
     }
 }
 
-void MonteCarlo::solver(Isingmodel im, bool dataswitch, bool energiesswitch, bool magnetizationswitch, int burn){
+void MonteCarlo::solver(Isingmodel im, bool dataswitch, bool energiesswitch, bool magnetizationswitch, int burn, bool matrix){
     arma::vec energies(steps, arma::fill::zeros);
     arma::vec burnenergies(steps-burn, arma::fill::zeros);
     arma::vec burnmagnetization(steps-burn, arma::fill::zeros);
@@ -99,15 +99,19 @@ void MonteCarlo::solver(Isingmodel im, bool dataswitch, bool energiesswitch, boo
         
         info(4) = T;
         
-        writevaluestofile(info, "plotting/datafiles/info" + filename);
+        writevaluestofile(info, "plotting/datafiles/info_" + filename);
     }
     
     if (energiesswitch){
-        writevaluestofile(energies, "plotting/datafiles/energies" + filename);
+        writevaluestofile(energies, "plotting/datafiles/energies_" + filename);
     }
     
     if (magnetizationswitch){
-        writevaluestofile(magnetizations, "plotting/datafiles/magnetizations" + filename);
+        writevaluestofile(magnetizations, "plotting/datafiles/magnetizations_" + filename);
+    }
+    
+    if (matrix){
+        writematrixtofile(im, "plotting/datafiles/matrix_" + filename);
     }
 }
 

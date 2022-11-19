@@ -21,16 +21,16 @@ def equilibration_m(magnetizations, N):
 	return mean_mags
 
 # Energies.
-energiesUT1 = np.loadtxt('plotting/datafiles/energies20x20_T1_UOrdered.txt')
-energiesOT1 = np.loadtxt('plotting/datafiles/energies20x20_T1_Ordered.txt')
-energiesUT24 = np.loadtxt('plotting/datafiles/energies20x20_T24_UOrdered.txt')
-energiesOT24 = np.loadtxt('plotting/datafiles/energies20x20_T24_Ordered.txt')
+energiesUT1 = np.loadtxt('plotting/datafiles/energies_20_UO_1.00000-1.00000.txt')
+energiesOT1 = np.loadtxt('plotting/datafiles/energies_20_O_1.00000-1.00000.txt')
+energiesUT24 = np.loadtxt('plotting/datafiles/energies_20_UO_2.400000-2.400000.txt')
+energiesOT24 = np.loadtxt('plotting/datafiles/energies_20_O_2.400000-2.400000.txt')
 
 # Magnetizations.
-magnetUT1 = np.loadtxt('plotting/datafiles/magnetizations20x20_T1_UOrdered.txt')
-magnetOT1 = np.loadtxt('plotting/datafiles/magnetizations20x20_T1_Ordered.txt')
-magnetUT24 = np.loadtxt('plotting/datafiles/magnetizations20x20_T24_UOrdered.txt')
-magnetOT24 = np.loadtxt('plotting/datafiles/magnetizations20x20_T24_Ordered.txt')
+magnetUT1 = np.loadtxt('plotting/datafiles/magnetizations_20_UO_1.00000-1.00000.txt')
+magnetOT1 = np.loadtxt('plotting/datafiles/magnetizations_20_O_1.00000-1.00000.txt')
+magnetUT24 = np.loadtxt('plotting/datafiles/magnetizations_20_UO_2.400000-2.400000.txt')
+magnetOT24 = np.loadtxt('plotting/datafiles/magnetizations_20_O_2.400000-2.400000.txt')
 
 n20 = 400
 cycles = np.linspace(0, len(energiesUT1), len(energiesUT1))

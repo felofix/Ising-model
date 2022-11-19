@@ -43,8 +43,8 @@ def equilibration_sus(magnetizations, N):
 N = 4
 B = 1
 T = 1
-energies22 = np.loadtxt('plotting/datafiles/energiesT12x2.txt')
-m22 = np.loadtxt('plotting/datafiles/magnetizationsT12x2.txt')
+energies22 = np.loadtxt('plotting/datafiles/energies_2_UO_100000-100000.txt')
+m22 = np.loadtxt('plotting/datafiles/magnetizations_2_UO_1.00000-1.00000.txt')
 cycles = np.linspace(0, 10000, 10000)
 equiE22 = equilibration_e(energies22[:10000], N)
 equiM22 = equilibration_m(m22[:10000], N)
