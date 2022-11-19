@@ -36,4 +36,6 @@ wheremax60 = np.where(info60[2::5][sortedindex60] == maxcv60)
 wheremax80 = np.where(info80[2::5][sortedindex80] == maxcv80)
 wheremax100 = np.where(info100[2::5][sortedindex100] == maxcv100)
 tc = np.array([t40[wheremax40][0], t60[wheremax60][0], t80[wheremax80][0], t100[wheremax100][0]])
-print(linregress(1/L, tc).intercept)
+for i in range(len(tc)):
+    print(f"T_c({40+i*20}) = {tc[i]}")
+print(f"T_c (inf) = {linregress(1/L, tc).intercept}")
