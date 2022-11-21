@@ -43,6 +43,3 @@ for i in range(len(tc)):
     print(f"T_c({40+i*20}) = {tc[i]}")
 print(f"T_c (inf) = {linregress(1/L, tc).intercept}")
 
-plt.plot(L, tc)
-plt.show()
-
