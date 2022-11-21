@@ -23,7 +23,7 @@ MonteCarlo::MonteCarlo(int stepsi, double Ti, std::string f){
     dE[4] =  0;  // exp(-1*(B*(8)));
 }
 
-double MonteCarlo::prob(Isingmodel &im, int i, int j){
+double MonteCarlo::prob(Isingmodel &im, int i, int j){ // Calculating probability.
     int de = im.isingmatrix(i, j)*(im.isingmatrix(i, im.r[j+1]) + im.isingmatrix(i, im.r[j-1]) + im.isingmatrix(im.r[i+1], j) + im.isingmatrix(im.r[i-1], j)); // sum
     im.deltaE = de;
     return dE[de];
@@ -33,8 +33,8 @@ bool MonteCarlo::metropolis(Isingmodel &im, int i, int j){
     double p = prob(im, i, j);
     double ran = rand()/(float)RAND_MAX;  // random Bournulli number.
     if (p >= ran){
-        im.E += im.deltaE*2; // updating energy
-        im.M -= im.isingmatrix(i, j)*2; // updating magnetization.
+        im.E += im.deltaE*2;              // updating energy
+        im.M -= im.isingmatrix(i, j)*2;   // updating magnetization.
         return true;
     }
     else{
@@ -42,13 +42,12 @@ bool MonteCarlo::metropolis(Isingmodel &im, int i, int j){
     }
 }
 
-// A Monte Carlo cycle.
-void MonteCarlo::mccycle(Isingmodel &im){
+void MonteCarlo::mccycle(Isingmodel &im){ // A Monte Carlo cycle.
     for (int i = 0; i < pow(im.L, 2); i++){
         int ii = rand() % im.L;
         int jj = rand() % im.L;
         
-        if (metropolis(im, ii, jj)){
+        if (metropolis(im, ii, jj)){  // Metropolis condition for flip of spin.
             im.isingmatrix(ii, jj) = -im.isingmatrix(ii, jj);
         }
         else{
@@ -79,14 +78,14 @@ void MonteCarlo::solver(Isingmodel im, bool dataswitch, bool energiesswitch, boo
         mccycle(im);
     }
     
-    if (burn > 0){
+    if (burn > 0){   // Removing burn samples, had to hardcode as armadillo doesnt seem to have a splice function.
         for (int j = 0; j < (steps - burn); j ++){
             burnenergies(j) = energies(burn + j);
             burnmagnetization(j) = magnetizations(burn + j);
         }
     }
     
-    if (dataswitch){
+    if (dataswitch){  // Datawitch for filling and printing data.
         arma::vec info(5, arma::fill::zeros);
         
         info(0) = mean_epsilon(energies, pow(im.L, 2));
@@ -122,25 +121,25 @@ double MonteCarlo::magnetization(Isingmodel im){
 }
 
 // Returning energy.
-double MonteCarlo::energy(Isingmodel im){
+double MonteCarlo::energy(Isingmodel im){ // Initial energy of system.
     double energy = -J*(arma::accu(im.isingmatrix % (arma::shift(im.isingmatrix, -1, 0) + arma::shift(im.isingmatrix, -1, 1))));
     return energy;
 }
 
 // Mean epsilon
-double MonteCarlo::mean_epsilon(arma::vec energies, int N){
+double MonteCarlo::mean_epsilon(arma::vec energies, int N){ // Mean energy.
     double mean_eps = arma::mean(energies)/N;
     return mean_eps;
 }
 
 // Mean epsilon
-double MonteCarlo::mean_m(arma::vec magnetizations, int N){
+double MonteCarlo::mean_m(arma::vec magnetizations, int N){ // Mean magnetization. 
     double mm = arma::mean(arma::abs(magnetizations))/N;
     return mm; 
 }
 
 // Heat cap
-double MonteCarlo::hc(arma::vec energies, int N){
+double MonteCarlo::hc(arma::vec energies, int N){ // Heat capacity.
     double abse = pow(arma::mean(energies), 2);
     arma::vec raised = arma::vec(energies.n_elem, arma::fill::zeros);
     for (int i = 0; i < energies.n_elem; i++){ // Because armadillo mean(pow(V)) doesnt work

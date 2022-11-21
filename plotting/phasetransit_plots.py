@@ -21,7 +21,7 @@ sortedindex60 = []
 sortedindex80 = []
 sortedindex100 = []
 
-for i in range(len(t40)):
+for i in range(len(t40)): # Indexation list because parallization mixes the order of the data.
     sortedindex40.append(int(np.where(sort40[i] == t40)[0]))
     sortedindex60.append(int(np.where(sort60[i] == t60)[0]))
     sortedindex80.append(int(np.where(sort80[i] == t80)[0]))

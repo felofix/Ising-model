@@ -2,19 +2,19 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-def mean_epsilon(energies, N):
+def mean_epsilon(energies, N): # Calculating mean energy per spin.
 	return np.mean(energies/N)
 
-def mean_mag(magnetizations, N):
+def mean_mag(magnetizations, N): # Calculating magnetization per spin.
 	return np.mean(abs(magnetizations/N))
 
-def equilibration_e(energies, N):
+def equilibration_e(energies, N):  # loop to see how the mean energy changes.
     mean_epsilons = np.zeros(len(energies))
     for i in range(1, len(mean_epsilons)):
         mean_epsilons[i] = mean_epsilon(energies[:i], N)
     return mean_epsilons
 
-def equilibration_m(magnetizations, N):
+def equilibration_m(magnetizations, N): # loop to see how the mean magnetization changes.
 	mean_mags = np.zeros(len(magnetizations))
 	for i in range(1, len(mean_mags)):
 		mean_mags[i] = mean_mag(magnetizations[:i], N)

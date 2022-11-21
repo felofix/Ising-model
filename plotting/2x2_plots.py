@@ -2,39 +2,39 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-def mean_epsilon(energies, N):
+def mean_epsilon(energies, N): # Calculating mean energy per spin.
     return np.mean(energies/N)
 
-def mean_mag(magnetizations, N):
+def mean_mag(magnetizations, N): # Calculating magnetization per spin.
     return np.mean(abs(magnetizations/N))
 
-def spes_heat_cap(energies, N, B, T):
+def spes_heat_cap(energies, N, B, T): # Calulating specific heat capcity.
     return (1/N)*(B/T)*np.var(energies)
 
-def suceptibility(magnetizations, N, B, T):
+def suceptibility(magnetizations, N, B, T): # Calculating suceptibility.
     mean1 = np.mean(magnetizations**2)
     mean2 = (np.mean(abs(magnetizations)))**2
     return (1/N)*(B)*(mean1 - mean2)
 
-def equilibration_e(energies, N):
+def equilibration_e(energies, N): # loop to see how the mean energy changes.
     mean_epsilons = np.zeros(len(energies))
     for i in range(1, len(mean_epsilons)):
         mean_epsilons[i] = mean_epsilon(energies[:i], N)
     return mean_epsilons
 
-def equilibration_m(magnetizations, N):
+def equilibration_m(magnetizations, N): # loop to see how the mean magnetization changes.
     mean_mags = np.zeros(len(magnetizations))
     for i in range(1, len(mean_mags)):
         mean_mags[i] = mean_mag(magnetizations[:i], N)
     return mean_mags
  
-def equilibration_cv(energies, N):
+def equilibration_cv(energies, N): # loop to see how the specific heat capacity changes.
     heat_caps = np.zeros(len(energies))
     for i in range(1, len(energies)):
         heat_caps[i] = spes_heat_cap(energies[:i], N, B, T)
     return heat_caps
 
-def equilibration_sus(magnetizations, N):
+def equilibration_sus(magnetizations, N): # loop to see how the suceptibility changes.
     susses = np.zeros(len(magnetizations))
     for i in range(1, len(susses)):
         susses[i] = suceptibility(magnetizations[:i], N, B, T)

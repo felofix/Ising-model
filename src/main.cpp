@@ -19,6 +19,7 @@ int main(int argc, const char * argv[]) {
         return 0;
     }
     
+    // Constants for overview.
     int L = atoi(argv[1]);
     double tstart = atof(argv[2]);
     double tend = atof(argv[3]);
@@ -34,16 +35,16 @@ int main(int argc, const char * argv[]) {
     
     arma::vec Ts = arma::linspace(tstart, tend, datapoints);
     
-    for (int j = 0; j < floor(datapoints / rounds); j++){ // for four steps.
+    for (int j = 0; j < floor(datapoints / rounds); j++){ // for each step.
         #pragma omp parallel for
-        for (int i = j*rounds; i < j*rounds+rounds; i++){ // for each core
-            if (orderedness){
+        for (int i = j*rounds; i < j*rounds+rounds; i++){ // for each core.
+            if (orderedness){           // Ordered spins.
                 Isingmodel I(L);
                 I.initilize_ordered();
                 MonteCarlo M(cycles, Ts(i), std::to_string(L) + "_" + "O" + "_" + std::to_string(tstart) + "-" + std::to_string(tend) + ".txt");
                 M.solver(I, quantities, energies, magnetization, burnin, matrix);
             }
-            else{
+            else{                      // Unordered spins. 
                 Isingmodel I(L);
                 I.initialize_model();
                 MonteCarlo M(cycles, Ts(i), std::to_string(L) + "_" + "UO" + "_" + std::to_string(tstart) + "-" + std::to_string(tend) + ".txt");
