@@ -23,6 +23,6 @@ matrix = Save ising matrix after number of cycles. <br />
 <br />
 The textfiles will be saved in plotting/datafiles. Some example plotting files can be found in the plotting folder, the commands to run them can be found in the makeplot file. 
 
-![alt text](https://pbs.twimg.com/media/C8K3dTgWkAAAVUi.jpg)
+![alt text](https://img.memegenerator.net/instances/22594340.jpg)
 
 Have fun!
