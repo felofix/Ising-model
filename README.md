@@ -14,7 +14,7 @@ datapoints = Number of temperatures to simulate for. Use 1 if your are running o
 rounds = Here you should use datapoints/number of cores in your computer, or 1 if you are simulating one temperature. (int) <br />
 cycles = Number of monte carlo cycles. (int) <br />
 burnin = Number of cycles to discard. (int) <br />
-orderedness = If you ising model should start out with spins ordered or unordered. (1 = True, 0 = False) <br />
+orderedness = If you Ising model should start out with spins ordered or unordered. (1 = True, 0 = False) <br />
 quantities = Save temperature, mean energy, mean magnetization, heat capacity and susceptibility in a textfile. (1 = True, 0 = False) <br />
 energies = Save energy after each cycle in a textfile. (1 = True, 0 = False) <br />
 magnetization = Save magnetization after each cycle in a textfile. (1 = True, 0 = False) <br />
